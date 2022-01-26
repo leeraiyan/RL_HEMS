@@ -138,6 +138,7 @@ def set_seeds(seed):
 
 """# Start Defining Loads"""
 
+
 import tomli
 
 with open("home.toml", "rb") as f:
@@ -373,6 +374,7 @@ class Agent():
         action_batch = self.action_memory[batch]
 
         q_eval = self.Q_eval.forward(state_batch)[batch_index, action_batch]
+
         q_next = self.target_Q_eval.forward(new_state_batch)
         
         q_next[terminal_batch] = 0.0
@@ -688,7 +690,7 @@ def test_ShiftableUnQLEARNING(agent, shiftableLoad, data):
 
 
 
-def runShiftableUnLoad(seed, load):
+def runShiftableUnLoad(run, seed, load):
   set_seeds(seed)
   averageConvergenceCurve = np.zeros((1500))
   for run in range(1):
