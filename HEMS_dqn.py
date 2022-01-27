@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Submittable DQN.ipynb
 
+
 # Define Classes for Loads
 """
 
@@ -445,7 +446,7 @@ def test_AdjustableQLEARNING(agent, adjustableLoad, data):
         hour += 1
     return totalRewards, auditList
 
-def runAdjustableLoad(run, seed, load):
+def runAdjustableLoad(seedRun, seed, load):
   set_seeds(seed)
   agent = Agent(gamma=1, epsilon=1, batch_size=50, n_actions=11,
                       eps_end=0.01, input_dims=[1], lr=0.0005)
@@ -455,7 +456,7 @@ def runAdjustableLoad(run, seed, load):
   q_tableSum = []
   for run in range(1):
     for episode in range(1500):
-      print("run", run, "training", load.loadName, "episode", episode)
+      print("run", seedRun, "training", load.loadName, "episode", episode)
       agent.epsilon = 0.1
       exampleX = random.randint(0,len(trainingDataDiscrete)-1)
       qlearning_episode_rewards, auditList = run_AdjustableQLEARNING(agent, load, trainingData[exampleX])
@@ -690,7 +691,7 @@ def test_ShiftableUnQLEARNING(agent, shiftableLoad, data):
 
 
 
-def runShiftableUnLoad(run, seed, load):
+def runShiftableUnLoad(seedRun, seed, load):
   set_seeds(seed)
   averageConvergenceCurve = np.zeros((1500))
   for run in range(1):
@@ -701,7 +702,7 @@ def runShiftableUnLoad(run, seed, load):
     trainingCurve = []
     qvaluesSum = []
     for episode in range(1500):
-      print("run", run, "training", load.loadName, "episode", episode)
+      print("run", seedRun, "training", load.loadName, "episode", episode)
       tempEpsilon = agent.epsilon
       exampleX = random.randint(0,len(trainingDataDiscrete)-1)
       qlearning_episode_rewards, auditList = run_ShiftableUnQLEARNING(agent, load, trainingData[exampleX])
@@ -715,7 +716,7 @@ def runShiftableUnLoad(run, seed, load):
       convergenceCurve.append(validationReward/70)
       trainingCurve.append(qlearning_episode_rewards)
       agent.epsilon = tempEpsilon
-      print("run", run, "episode", episode, "done", "Episode Reward",qlearning_episode_rewards ,"Validation reward", validationReward/70)
+      # print("run", run, "episode", episode, "done", "Episode Reward",qlearning_episode_rewards ,"Validation reward", validationReward/70)
 
   TestingResults = []
   TestingAuditList = []
@@ -938,7 +939,7 @@ def test_ShiftableIntQLEARNING(agent, shiftableInterruptibleLoad, data):
     return totalRewards, auditList
 
 
-def runShiftableIntLoad(run, seed, load):
+def runShiftableIntLoad(seedRun, seed, load):
   set_seeds(seed)
   for run in range(1):
     
@@ -950,7 +951,7 @@ def runShiftableIntLoad(run, seed, load):
     qvaluesSum = []
     for run in range(1):
       for episode in range(1500):
-        print("run", run, "training", load.loadName, "episode", episode)
+        print("run", seedRun, "training", load.loadName, "episode", episode)
         agent.epsilon = 0.1
         qlearning_episode_rewards, auditList = run_ShiftableIntQLEARNING(agent, electricVehicle, trainingData[episode%len(trainingData)])
         validationReward = 0
