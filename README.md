@@ -13,3 +13,4 @@ In order to run these files successfully, it is necessary to do the following:
       - 2021.npy
 5. Run `python HEMS_dqn.py` to run the DQN algorithm for HEMS. This file completes 10 runs with explicitly set seeds to gather the results based on the data provided in Step 4. On an  i7-1165G7 @ 2.80GHz machine, this operation takes around 3 hours to complete.
 6. Run `python HEMS_q_learning.py` to run the Q Learning algorithm for HEMS. This file completes 10 runs with explicitly set seeds to gather the results based on the data provided in Step 4. On an  i7-1165G7 @ 2.80GHz machine, this operation takes around 1.5 hours to complete.
+7. Run `python PPO_HEMS.py` or `python PPO_HEMSShiftableInt.py` or `PPO_HEMSShiftableUnInt.py` to run the PPO algorithm for HEMS. This file completes only one run with explicitly set seeds. Warning: this code may take hours to complete on an i7-1165G7 @ 2.80GHz machine.
